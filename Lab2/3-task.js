@@ -34,11 +34,12 @@ const person = {
 };
 
 const newPerson = clone(person);
-;
+
 console.log({person, newPerson});
 console.log(person.friends === newPerson.friends);
 console.log(person.friends[0] === newPerson.friends[0]);
 
-
+// Internet solution(very fast)
+const cheatClone = obj => JSON.parse(JSON.stringify(obj));
 
 
