@@ -4,13 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const dotenv_1 = require("dotenv");
-(0, dotenv_1.config)();
+const env_enum_1 = require("./common/enums/env/env.enum");
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 5000;
+const PORT = env_enum_1.ENV.APP.PORT;
 app.get('/', (req, res) => {
     res.send('Express + TypeScript Server');
 });
 app.listen(PORT, () => {
-    console.log("Server was started");
+    console.log("Server was started | PORT = ", PORT);
 });

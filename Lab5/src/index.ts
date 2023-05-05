@@ -1,9 +1,8 @@
 import express, {Request, Response, Express} from "express"
-import {config} from "dotenv"
-config()
+import {ENV} from "./common/enums/env/env.enum";
 
 const app: Express = express()
-const PORT = process.env.PORT || 5000
+const PORT = ENV.APP.PORT
 
 
 app.get('/', (req: Request, res: Response) => {
@@ -11,7 +10,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Server was started");
+    console.log("Server was started | PORT = ", PORT);
 })
 
 
