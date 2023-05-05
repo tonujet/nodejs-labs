@@ -1,13 +1,13 @@
 import {Router} from "express"
 import {userController} from "../controllers/user.controller";
-
+import {UserRoutes} from "../common/enums/user/user-routes.enum";
 
 const userRouter: Router = Router();
-userRouter.get("/:id", userController.get);
-userRouter.get("/", userController.getAll);
-userRouter.delete("/:id", userController.delete)
-userRouter.patch("/:id", userController.update)
-userRouter.post("/", userController.create)
+userRouter.get(UserRoutes.GET, userController.get);
+userRouter.get(UserRoutes.GET_ALL, userController.getAll);
+userRouter.delete(UserRoutes.DELETE, userController.delete)
+userRouter.patch(UserRoutes.UPDATE, userController.update)
+userRouter.post(UserRoutes.CREATE, userController.create)
 
 
 export {userRouter}
