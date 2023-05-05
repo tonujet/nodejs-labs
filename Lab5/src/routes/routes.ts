@@ -4,4 +4,4 @@ import {ApiRoutes} from "../common/enums/api/api-routes.enum";
 
 const apiRouter: Router = Router();
 apiRouter.use(ApiRoutes.USERS, userRouter);
-export default apiRouter;
+export {apiRouter};

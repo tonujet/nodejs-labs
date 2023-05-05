@@ -1,4 +1,5 @@
 enum ApiRoutes{
+    API = "/api",
     USERS = "/user"
 }
 
