@@ -9,6 +9,7 @@ const routes_1 = require("./routes/routes");
 const api_routes_enum_1 = require("./common/enums/api/api-routes.enum");
 const app = (0, express_1.default)();
 const PORT = env_enum_1.ENV.APP.PORT;
+app.use(express_1.default.json());
 app.use(api_routes_enum_1.ApiRoutes.API, routes_1.apiRouter);
 app.listen(PORT, () => {
     console.log("Server was started | PORT = ", PORT);
