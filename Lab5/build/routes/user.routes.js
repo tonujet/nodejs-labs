@@ -2,16 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userRouter = void 0;
 const express_1 = require("express");
-// - зробіть ендпоінт "створення користувача" з
-// обов'язковим параметром username і необов'язковим параметром name;
-// - зробіть ендпоінт "отримання даних користувача за його id" (id + username + name); +
-// - зробіть ендпоінт "список користувачів" (список записів id + username + name); +
-// - зробіть ендпоінт "оновлення даних користувача за його id";
-// - зробіть ендпоінт "видалення користувача за його id"; +
+const user_controller_1 = require("../controllers/user.controller");
 const userRouter = (0, express_1.Router)();
 exports.userRouter = userRouter;
-userRouter.get("/:id");
-userRouter.get("/");
-userRouter.delete("/:id");
-userRouter.patch("/:id");
-userRouter.post("/");
+userRouter.get("/:id", user_controller_1.userController.get);
+userRouter.get("/", user_controller_1.userController.getAll);
+userRouter.delete("/:id", user_controller_1.userController.delete);
+userRouter.patch("/:id", user_controller_1.userController.update);
+userRouter.post("/", user_controller_1.userController.create);
