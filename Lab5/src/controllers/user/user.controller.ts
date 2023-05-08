@@ -42,7 +42,10 @@ class UserController {
             const userJson = req.body;
             this.userValidator.isIdUndefined(userJson.id);
             const user: UserEntity = plainToInstance(UserEntity, userJson);
-            await validateOrReject(user, {whitelist: true, forbidUnknownValues: true});
+            await validateOrReject(user, {
+                whitelist: true,
+                forbidUnknownValues: true
+            });
             const createdUser: UserEntity = await this.userService.create(user);
             res.json(createdUser);
         } catch (e) {

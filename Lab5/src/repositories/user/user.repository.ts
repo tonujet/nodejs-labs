@@ -92,9 +92,7 @@ class UserRepository {
     }
 
     async logOptions(): Promise<void> {
-        const options: Options = {
-            currId: String(this.currId)
-        };
+        const options: Options = {currId: String(this.currId)};
         const rawOptions = this.optionParser.convertToOptions(options);
         await fsp.writeFile(this.optionsPath, rawOptions);
         this.currId = Number(options.currId);
