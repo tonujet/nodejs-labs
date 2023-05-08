@@ -1,5 +1,5 @@
 enum UserRoutes {
-    GET ="/:id",
+    GET = "/:id",
     GET_ALL = "/",
     DELETE = "/:id",
     UPDATE = "/:id",
@@ -7,4 +7,4 @@ enum UserRoutes {
 
 }
 
-export {UserRoutes}
+export {UserRoutes};

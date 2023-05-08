@@ -1,6 +1,6 @@
-enum ApiRoutes{
+enum ApiRoutes {
     API = "/api",
     USERS = "/users"
 }
 
-export {ApiRoutes}
+export {ApiRoutes};

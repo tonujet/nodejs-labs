@@ -13,7 +13,7 @@ class UserValidator {
         if (Number.isNaN(id) || id < 0) {
             throw new Error(this.errMessGen.incorrectId(id));
         }
-        return undefined
+        return undefined;
     }
 
     isIdUndefined(id: number | undefined): never | undefined {
@@ -25,10 +25,11 @@ class UserValidator {
         if (!user) {
             throw new Error(this.errMessGen.notFound(id));
         }
-        return user
+        return user;
     }
 
 
 }
+
 const userValidator = new UserValidator(userErrMessGen);
 export {userValidator, UserValidator};

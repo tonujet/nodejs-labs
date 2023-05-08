@@ -10,7 +10,7 @@ class UserService {
         this.userRepository = userRepo;
     }
 
-    async get(id: number): Promise<UserEntity | undefined > | never {
+    async get(id: number): Promise<UserEntity | undefined> | never {
         return await this.userRepository.get(id);
     };
 

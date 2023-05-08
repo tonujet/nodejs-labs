@@ -8,7 +8,7 @@ import {UserProperties} from "../../common/types/user/user.properties";
 import {UserValidator} from "../../entity/user/user-validator";
 
 class UserRepository {
-    private  currId: number;
+    private currId: number;
     private readonly csvParser: CsvParser;
     private readonly optionParser: OptionParser;
     private readonly storagePath: string;
@@ -36,10 +36,10 @@ class UserRepository {
     }
 
 
-    async get(id: number): Promise<UserEntity> | never{
+    async get(id: number): Promise<UserEntity> | never {
         const users: UserEntity[] = await this.getAll();
         const receivedUser: UserEntity | undefined = users.find(user => user.id = id);
-        this.userValidator.isExist(receivedUser, id)
+        this.userValidator.isExist(receivedUser, id);
         return receivedUser!;
     };
 

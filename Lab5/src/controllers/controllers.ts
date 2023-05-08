@@ -4,4 +4,4 @@ import {userValidator} from "../entity/user/user-validator";
 
 const userController = new UserController(userService, userValidator);
 
-export {userController, UserController}
+export {userController, UserController};

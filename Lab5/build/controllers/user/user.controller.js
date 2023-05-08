@@ -57,7 +57,11 @@ class UserController {
                 const propertiesJson = req.body;
                 this.userValidator.isIdUndefined(propertiesJson.id);
                 const props = (0, class_transformer_1.plainToInstance)(user_entity_1.UserEntity, propertiesJson);
-                await (0, class_validator_1.validateOrReject)(props, { skipMissingProperties: true, forbidUnknownValues: true, whitelist: true });
+                await (0, class_validator_1.validateOrReject)(props, {
+                    skipMissingProperties: true,
+                    forbidUnknownValues: true,
+                    whitelist: true
+                });
                 const updatedUser = await this.userService.update(props, id);
                 res.json(updatedUser);
             }

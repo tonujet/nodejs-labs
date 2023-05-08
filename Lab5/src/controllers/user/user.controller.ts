@@ -12,7 +12,7 @@ class UserController {
     private readonly userValidator: UserValidator;
 
 
-    constructor(userService: UserService, userValidator: UserValidator ) {
+    constructor(userService: UserService, userValidator: UserValidator) {
         this.userService = userService;
         this.userValidator = userValidator;
     }
@@ -28,7 +28,7 @@ class UserController {
         }
     };
 
-    getAll = async (req: Request, res: Response, next: NextFunction): Promise<void> =>  {
+    getAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const users: UserEntity[] = await this.userService.getAll();
             res.json(users);
@@ -40,7 +40,7 @@ class UserController {
     create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const userJson = req.body;
-            this.userValidator.isIdUndefined(userJson.id)
+            this.userValidator.isIdUndefined(userJson.id);
             const user: UserEntity = plainToInstance(UserEntity, userJson);
             await validateOrReject(user, {whitelist: true, forbidUnknownValues: true});
             const createdUser: UserEntity = await this.userService.create(user);
@@ -70,7 +70,11 @@ class UserController {
             this.userValidator.isIdUndefined(propertiesJson.id);
 
             const props: UserEntity = plainToInstance(UserEntity, propertiesJson);
-            await validateOrReject(props, {skipMissingProperties: true, forbidUnknownValues: true, whitelist: true});
+            await validateOrReject(props, {
+                skipMissingProperties: true,
+                forbidUnknownValues: true,
+                whitelist: true
+            });
             const updatedUser: UserEntity = await this.userService.update(props as UserProperties, id);
             res.json(updatedUser);
         } catch (e) {

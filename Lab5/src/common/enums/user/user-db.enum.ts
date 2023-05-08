@@ -3,4 +3,4 @@ enum UserDbEnum {
     options = "D:\\io\\University\\Semester 4\\nodejs\\nodejs-labs\\Lab5\\src\\db\\options\\user\\user-options",
 }
 
-export {UserDbEnum}
+export {UserDbEnum};
