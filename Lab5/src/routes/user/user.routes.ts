@@ -1,6 +1,6 @@
 import {Router} from "express"
-import {userController} from "../controllers/user.controller";
-import {UserRoutes} from "../common/enums/user/user-routes.enum";
+import {userController} from "../../controllers/controllers";
+import {UserRoutes} from "../../common/enums/user/user-routes.enum";
 
 const userRouter: Router = Router();
 userRouter.get(UserRoutes.GET, userController.get);

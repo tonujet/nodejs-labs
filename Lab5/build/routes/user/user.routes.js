@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userRouter = void 0;
+const express_1 = require("express");
+const controllers_1 = require("../../controllers/controllers");
+const user_routes_enum_1 = require("../../common/enums/user/user-routes.enum");
+const userRouter = (0, express_1.Router)();
+exports.userRouter = userRouter;
+userRouter.get(user_routes_enum_1.UserRoutes.GET, controllers_1.userController.get);
+userRouter.get(user_routes_enum_1.UserRoutes.GET_ALL, controllers_1.userController.getAll);
+userRouter.delete(user_routes_enum_1.UserRoutes.DELETE, controllers_1.userController.delete);
+userRouter.patch(user_routes_enum_1.UserRoutes.UPDATE, controllers_1.userController.update);
+userRouter.post(user_routes_enum_1.UserRoutes.CREATE, controllers_1.userController.create);
