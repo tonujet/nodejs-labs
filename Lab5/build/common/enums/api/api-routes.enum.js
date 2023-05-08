@@ -4,6 +4,6 @@ exports.ApiRoutes = void 0;
 var ApiRoutes;
 (function (ApiRoutes) {
     ApiRoutes["API"] = "/api";
-    ApiRoutes["USERS"] = "/user";
+    ApiRoutes["USERS"] = "/users";
 })(ApiRoutes || (ApiRoutes = {}));
 exports.ApiRoutes = ApiRoutes;

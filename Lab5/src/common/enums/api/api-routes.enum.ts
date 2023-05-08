@@ -1,6 +1,6 @@
 enum ApiRoutes{
     API = "/api",
-    USERS = "/user"
+    USERS = "/users"
 }
 
 export {ApiRoutes}
