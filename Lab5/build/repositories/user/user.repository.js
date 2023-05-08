@@ -18,7 +18,7 @@ class UserRepository {
     }
     async get(id) {
         const users = await this.getAll();
-        const receivedUser = users.find(user => user.id = id);
+        const receivedUser = users.find(user => user.id === id);
         this.userValidator.isExist(receivedUser, id);
         return receivedUser;
     }
@@ -30,7 +30,7 @@ class UserRepository {
     }
     ;
     async create(user) {
-        const createdUser = { id: ++this.currId, ...user };
+        const createdUser = { id: this.currId++, ...user };
         const csvLine = this.csvParser.entityToCsvRaw(createdUser);
         await promises_1.default.appendFile(this.storagePath, `\n${csvLine}`, { encoding: "utf-8" });
         return createdUser;

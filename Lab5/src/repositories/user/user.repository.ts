@@ -38,7 +38,7 @@ class UserRepository {
 
     async get(id: number): Promise<UserEntity> | never {
         const users: UserEntity[] = await this.getAll();
-        const receivedUser: UserEntity | undefined = users.find(user => user.id = id);
+        const receivedUser: UserEntity | undefined = users.find(user => user.id === id);
         this.userValidator.isExist(receivedUser, id);
         return receivedUser!;
     };
@@ -50,7 +50,7 @@ class UserRepository {
     };
 
     async create(user: UserEntity): Promise<UserEntity> | never {
-        const createdUser: UserEntity = {id: ++this.currId, ...user};
+        const createdUser: UserEntity = {id: this.currId++, ...user};
         const csvLine: string = this.csvParser.entityToCsvRaw(createdUser);
         await fsp.appendFile(this.storagePath, `\n${csvLine}`, {encoding: "utf-8"});
         return createdUser;
