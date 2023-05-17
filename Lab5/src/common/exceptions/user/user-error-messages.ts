@@ -1,9 +1,9 @@
-import {UserErrorMessageGeneratorType} from "../../types/user/user-error-message-generator.type.js";
+import {UserErrMessType}  from "../../types/user/user-error-messages.type.js";
 
-const userErrMessGen: UserErrorMessageGeneratorType = {
+const userErrMess: UserErrMessType = {
     incorrectId: (id: number): string => `Id: ${id} is incorrect, you should pass number greater or equal to zero`,
     redundantId: (id: number): string => `Redundant id: ${id}`,
     notFound: (id: number): string => `User with id: ${id} not found`,
 };
 
-export {userErrMessGen};
+export {userErrMess};
