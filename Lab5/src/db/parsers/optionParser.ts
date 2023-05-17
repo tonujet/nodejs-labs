@@ -3,21 +3,21 @@ import type {Options} from "../../common/types/option/options.type.js";
 class OptionParser {
 
     parseOptions(rawData: string) {
-        const options: Options = {};
-        const lines: string[] = rawData.split("\n");
-        const equalIndexes: number[] = lines.map(line => line.indexOf("="));
+        const options = {} as Options;
+        const lines = rawData.split("\n");
+        const equalIndexes = lines.map(line => line.indexOf("="));
         for (const [i, line] of lines.entries()) {
-            const key: string = line.slice(0, equalIndexes[i]);
+            const key = line.slice(0, equalIndexes[i]);
             options[key] = line.slice(++equalIndexes[i]);
         }
         return options;
     }
 
-    convertToOptions(options: Options): string {
-        let rawData: string = "";
-        let counter: number = 0;
+    convertToOptions(options: Options) {
+        let rawData= "";
+        let counter = 0;
         const entries: [string, string][] = Object.entries(options);
-        const propertyLength: number = entries.length;
+        const propertyLength = entries.length;
         for (const [key, value] of entries) {
             let line;
             if (counter !== propertyLength - 1) {

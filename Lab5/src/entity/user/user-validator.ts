@@ -3,25 +3,22 @@ import {UserErrMessType} from "../../common/types/user/user-error-messages.type.
 import {UserEntity} from "./user.entity.js";
 
 class UserValidator {
-    errMessages: UserErrMessType;
 
-    constructor(errMessGen: UserErrMessType) {
-        this.errMessages = errMessGen;
-    }
+    constructor(
+        private readonly errMessages: UserErrMessType
+    ) {}
 
-    isIdValid(id: number): never | undefined {
+    isIdValid(id: number) {
         if (Number.isNaN(id) || id < 0) {
             throw new Error(this.errMessages.incorrectId(id));
         }
-        return undefined;
     }
 
-    isIdUndefined(id: number | undefined): never | undefined {
+    isIdUndefined(id: number | undefined) {
         if (id) throw new Error(this.errMessages.redundantId(id));
-        return undefined;
     }
 
-    isExist(user: UserEntity | null | undefined, id: number): never | UserEntity {
+    isExist(user: UserEntity | null | undefined, id: number){
         if (!user) {
             throw new Error(this.errMessages.notFound(id));
         }
