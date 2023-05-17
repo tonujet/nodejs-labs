@@ -1,0 +1,25 @@
+{
+  "name": "lab6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "dotenv": "^16.0.3",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.7",
+    "@types/pg": "^8.6.6",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.4"
+  }
+}
