@@ -8,77 +8,73 @@ import {UserValidator} from "../../entity/user/user-validator.js";
 
 class UserController {
 
-    private readonly userService: UserService;
-    private readonly userValidator: UserValidator;
+    constructor(
+        private readonly userService: UserService,
+        private readonly userValidator: UserValidator
+    ){}
 
-
-    constructor(userService: UserService, userValidator: UserValidator) {
-        this.userService = userService;
-        this.userValidator = userValidator;
-    }
-
-    get = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    get = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const id: number = Number(req.params.id);
+            const id = Number(req.params.id);
             this.userValidator.isIdValid(id);
-            const user: UserEntity | undefined = await this.userService.get(id);
+            const user = await this.userService.get(id);
             res.json(user);
         } catch (e) {
             next(e);
         }
     };
 
-    getAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    getAll = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const users: UserEntity[] = await this.userService.getAll();
+            const users = await this.userService.getAll();
             res.json(users);
         } catch (e) {
             next(e);
         }
     };
 
-    create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    create = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userJson = req.body;
             this.userValidator.isIdUndefined(userJson.id);
-            const user: UserEntity = plainToInstance(UserEntity, userJson);
+            const user = plainToInstance(UserEntity, userJson);
             await validateOrReject(user, {
                 whitelist: true,
                 forbidUnknownValues: true
             });
-            const createdUser: UserEntity = await this.userService.create(user);
+            const createdUser = await this.userService.create(user);
             res.json(createdUser);
         } catch (e) {
             next(e);
         }
     };
 
-    delete = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const id: number = Number(req.params.id);
+            const id = Number(req.params.id);
             this.userValidator.isIdValid(id);
-            const deletedUser: UserEntity = await this.userService.delete(id);
+            const deletedUser = await this.userService.delete(id);
             res.json(deletedUser);
         } catch (e) {
             next(e);
         }
     };
 
-    update = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    update = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const id: number = Number(req.params.id);
+            const id = Number(req.params.id);
             this.userValidator.isIdValid(id);
 
             const propertiesJson = req.body;
             this.userValidator.isIdUndefined(propertiesJson.id);
 
-            const props: UserEntity = plainToInstance(UserEntity, propertiesJson);
+            const props = plainToInstance(UserEntity, propertiesJson);
             await validateOrReject(props, {
                 skipMissingProperties: true,
                 forbidUnknownValues: true,
                 whitelist: true
             });
-            const updatedUser: UserEntity = await this.userService.update(props as UserProperties, id);
+            const updatedUser = await this.userService.update(props as UserProperties, id);
             res.json(updatedUser);
         } catch (e) {
             next(e);

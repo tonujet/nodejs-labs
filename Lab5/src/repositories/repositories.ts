@@ -4,7 +4,7 @@ import {csvParser, optionParser} from "../db/parsers/parser.js";
 import {UserEntity} from "../entity/user/user.entity.js";
 import {userValidator} from "../entity/user/user-validator.js";
 
-const userKeys: (keyof UserEntity)[] = ["id", "name", "username"] as (keyof UserEntity)[];
+const userKeys = ["id", "name", "username"] as (keyof UserEntity)[];
 
 const userRepository = new UserRepository(
     ENV.USER.STORAGE_PATH,
@@ -19,7 +19,7 @@ const userRepository = new UserRepository(
 userRepository.readOptions();
 
 
-async function exitHandler(evtOrExitCodeOrError: number | string | Error): Promise<void> {
+async function exitHandler(evtOrExitCodeOrError: number | string | Error) {
 // write options to file before process.exit()
     await userRepository.logOptions();
     process.exit(isNaN(+evtOrExitCodeOrError) ? 1 : +evtOrExitCodeOrError);

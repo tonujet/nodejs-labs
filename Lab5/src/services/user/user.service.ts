@@ -5,30 +5,28 @@ import {UserProperties} from "../../common/types/user/user.properties.js";
 
 
 class UserService {
-    private readonly userRepository: UserRepository;
+    constructor(
+        private readonly userRepo: UserRepository
+    ) {}
 
-    constructor(userRepo: UserRepository) {
-        this.userRepository = userRepo;
-    }
-
-    async get(id: number): Promise<UserEntity | undefined> | never {
-        return await this.userRepository.get(id);
+    async get(id: number) {
+        return await this.userRepo.get(id);
     };
 
-    async getAll(): Promise<UserEntity[]> {
-        return await this.userRepository.getAll();
+    async getAll() {
+        return await this.userRepo.getAll();
     };
 
-    async create(user: UserEntity): Promise<UserEntity> {
-        return await this.userRepository.create(user);
+    async create(user: UserEntity) {
+        return await this.userRepo.create(user);
     };
 
-    async delete(id: number): Promise<UserEntity> {
-        return await this.userRepository.delete(id);
+    async delete(id: number) {
+        return await this.userRepo.delete(id);
     };
 
-    async update(properties: UserProperties, id: number): Promise<UserEntity> {
-        return await this.userRepository.update(properties, id);
+    async update(properties: UserProperties, id: number) {
+        return await this.userRepo.update(properties, id);
     };
 
 }
