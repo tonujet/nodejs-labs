@@ -1,6 +1,6 @@
-import {userService} from "../services/services";
-import {UserController} from "./user/user.controller";
-import {userValidator} from "../entity/user/user-validator";
+import {userService} from "../services/services.js";
+import {UserController} from "./user/user.controller.js";
+import {userValidator} from "../entity/user/user-validator.js";
 
 const userController = new UserController(userService, userValidator);
 

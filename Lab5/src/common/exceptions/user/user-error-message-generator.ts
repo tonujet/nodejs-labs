@@ -1,4 +1,4 @@
-import {UserErrorMessageGeneratorType} from "../../types/user/user-error-message-generator.type";
+import {UserErrorMessageGeneratorType} from "../../types/user/user-error-message-generator.type.js";
 
 const userErrMessGen: UserErrorMessageGeneratorType = {
     incorrectId: (id: number): string => `Id: ${id} is incorrect, you should pass number greater or equal to zero`,

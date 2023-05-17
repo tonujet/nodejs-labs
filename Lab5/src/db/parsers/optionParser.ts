@@ -1,4 +1,4 @@
-import type {Options} from "../../common/types/option/options.type";
+import type {Options} from "../../common/types/option/options.type.js";
 
 class OptionParser {
 

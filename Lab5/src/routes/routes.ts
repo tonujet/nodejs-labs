@@ -1,7 +1,7 @@
 import {Router} from "express";
-import {userRouter} from "./user/user.routes";
-import {ApiRoutes} from "../common/enums/api/api-routes.enum";
-import {finalValidationMiddleware} from "../middleware/validators/final-validation.middleware";
+import {userRouter} from "./user/user.routes.js";
+import {ApiRoutes} from "../common/enums/api/api-routes.enum.js";
+import {finalValidationMiddleware} from "../middleware/validators/final-validation.middleware.js";
 
 const apiRouter: Router = Router();
 apiRouter.use(ApiRoutes.USERS, userRouter);

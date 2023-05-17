@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,24 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserEntity = void 0;
-const class_validator_1 = require("class-validator");
+import { IsInt, Min, IsString, Length, ValidateIf } from "class-validator";
 class UserEntity {
+    id;
+    username;
+    name;
 }
 __decorate([
-    (0, class_validator_1.ValidateIf)(o => o.id),
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.Min)(0),
+    ValidateIf(o => o.id),
+    IsInt(),
+    Min(0),
     __metadata("design:type", Number)
 ], UserEntity.prototype, "id", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(3, 50),
+    IsString(),
+    Length(3, 50),
     __metadata("design:type", String)
 ], UserEntity.prototype, "username", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    IsString(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "name", void 0);
-exports.UserEntity = UserEntity;
+export { UserEntity };

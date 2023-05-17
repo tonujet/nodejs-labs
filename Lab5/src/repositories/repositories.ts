@@ -1,8 +1,8 @@
-import {UserRepository} from "./user/user.repository";
-import {UserDbEnum} from "../common/enums/user/user-db.enum";
-import {csvParser, optionParser} from "../db/parsers/parser";
-import {UserEntity} from "../entity/user/user.entity";
-import {userValidator} from "../entity/user/user-validator";
+import {UserRepository} from "./user/user.repository.js";
+import {UserDbEnum} from "../common/enums/user/user-db.enum.js";
+import {csvParser, optionParser} from "../db/parsers/parser.js";
+import {UserEntity} from "../entity/user/user.entity.js";
+import {userValidator} from "../entity/user/user-validator.js";
 
 const userKeys: (keyof UserEntity)[] = ["id", "name", "username"] as (keyof UserEntity)[];
 

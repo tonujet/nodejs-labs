@@ -1,6 +1,6 @@
-import {userErrMessGen} from "../../common/exceptions/user/user-error-message-generator";
-import {UserErrorMessageGeneratorType} from "../../common/types/user/user-error-message-generator.type";
-import {UserEntity} from "./user.entity";
+import {userErrMessGen} from "../../common/exceptions/user/user-error-message-generator.js";
+import {UserErrorMessageGeneratorType} from "../../common/types/user/user-error-message-generator.type.js";
+import {UserEntity} from "./user.entity.js";
 
 class UserValidator {
     errMessGen: UserErrorMessageGeneratorType;

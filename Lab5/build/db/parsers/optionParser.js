@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.OptionParser = void 0;
 class OptionParser {
     parseOptions(rawData) {
         const options = {};
@@ -31,4 +28,4 @@ class OptionParser {
         return rawData;
     }
 }
-exports.OptionParser = OptionParser;
+export { OptionParser };

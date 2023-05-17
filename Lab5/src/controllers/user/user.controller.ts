@@ -1,10 +1,10 @@
-import {UserService} from "../../services/services";
+import {UserService} from "../../services/services.js";
 import {Request, Response, NextFunction} from "express";
 import {validateOrReject} from "class-validator";
 import {plainToInstance} from "class-transformer";
-import {UserEntity} from "../../entity/user/user.entity";
-import {UserProperties} from "../../common/types/user/user.properties";
-import {UserValidator} from "../../entity/user/user-validator";
+import {UserEntity} from "../../entity/user/user.entity.js";
+import {UserProperties} from "../../common/types/user/user.properties.js";
+import {UserValidator} from "../../entity/user/user-validator.js";
 
 class UserController {
 

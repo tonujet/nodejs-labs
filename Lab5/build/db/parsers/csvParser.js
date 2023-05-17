@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CsvParser = void 0;
 class CsvParser {
     parseRaws(csvRaws) {
         return csvRaws.split("\n");
@@ -46,4 +43,4 @@ class CsvParser {
         return typedValues.join(",");
     }
 }
-exports.CsvParser = CsvParser;
+export { CsvParser };

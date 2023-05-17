@@ -1,14 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRepository = exports.userRepository = void 0;
-const user_repository_1 = require("./user/user.repository");
-Object.defineProperty(exports, "UserRepository", { enumerable: true, get: function () { return user_repository_1.UserRepository; } });
-const user_db_enum_1 = require("../common/enums/user/user-db.enum");
-const parser_1 = require("../db/parsers/parser");
-const user_validator_1 = require("../entity/user/user-validator");
+import { UserRepository } from "./user/user.repository.js";
+import { UserDbEnum } from "../common/enums/user/user-db.enum.js";
+import { csvParser, optionParser } from "../db/parsers/parser.js";
+import { userValidator } from "../entity/user/user-validator.js";
 const userKeys = ["id", "name", "username"];
-const userRepository = new user_repository_1.UserRepository(user_db_enum_1.UserDbEnum.storage, user_db_enum_1.UserDbEnum.options, parser_1.csvParser, parser_1.optionParser, userKeys, user_validator_1.userValidator);
-exports.userRepository = userRepository;
+const userRepository = new UserRepository(UserDbEnum.storage, UserDbEnum.options, csvParser, optionParser, userKeys, userValidator);
 // read start options
 userRepository.readOptions();
 async function exitHandler(evtOrExitCodeOrError) {
@@ -20,3 +15,4 @@ async function exitHandler(evtOrExitCodeOrError) {
     'beforeExit', 'SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL',
     'SIGTRAP', 'SIGABRT', 'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM',
 ].forEach(evt => process.on(evt, exitHandler));
+export { userRepository, UserRepository };

@@ -1,12 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRepository = void 0;
-const promises_1 = __importDefault(require("fs/promises"));
-const user_db_enum_1 = require("../../common/enums/user/user-db.enum");
+import fsp from "fs/promises";
+import { UserDbEnum } from "../../common/enums/user/user-db.enum.js";
 class UserRepository {
+    currId;
+    csvParser;
+    optionParser;
+    storagePath;
+    optionsPath;
+    keys;
+    header;
+    userValidator;
     constructor(storagePath, optionsPath, csvParser, optionParser, keys, userValidator) {
         this.storagePath = storagePath;
         this.optionsPath = optionsPath;
@@ -25,14 +27,14 @@ class UserRepository {
     ;
     async getAll() {
         const header = this.header;
-        const data = await promises_1.default.readFile(user_db_enum_1.UserDbEnum.storage, { encoding: "utf-8" });
+        const data = await fsp.readFile(UserDbEnum.storage, { encoding: "utf-8" });
         return this.csvParser.parseEntities(header, data, this.keys);
     }
     ;
     async create(user) {
         const createdUser = { id: this.currId++, ...user };
         const csvLine = this.csvParser.entityToCsvRaw(createdUser);
-        await promises_1.default.appendFile(this.storagePath, `\n${csvLine}`, { encoding: "utf-8" });
+        await fsp.appendFile(this.storagePath, `\n${csvLine}`, { encoding: "utf-8" });
         return createdUser;
     }
     ;
@@ -68,20 +70,18 @@ class UserRepository {
             csvRaws = `${this.header}\n${csvRaws}`;
         else
             csvRaws = `${this.header}`;
-        await promises_1.default.writeFile(this.storagePath, csvRaws, { encoding: "utf-8" });
+        await fsp.writeFile(this.storagePath, csvRaws, { encoding: "utf-8" });
     }
     async logOptions() {
-        const options = {
-            currId: String(this.currId)
-        };
+        const options = { currId: String(this.currId) };
         const rawOptions = this.optionParser.convertToOptions(options);
-        await promises_1.default.writeFile(this.optionsPath, rawOptions);
+        await fsp.writeFile(this.optionsPath, rawOptions);
         this.currId = Number(options.currId);
     }
     async readOptions() {
-        const rawOptions = await promises_1.default.readFile(this.optionsPath, { encoding: "utf-8" });
+        const rawOptions = await fsp.readFile(this.optionsPath, { encoding: "utf-8" });
         const options = this.optionParser.parseOptions(rawOptions);
         this.currId = Number(options.currId);
     }
 }
-exports.UserRepository = UserRepository;
+export { UserRepository };

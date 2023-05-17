@@ -1,11 +1,11 @@
 import fsp from "fs/promises";
-import {UserEntity} from "../../entity/user/user.entity";
-import {CsvParser} from "../../db/parsers/csvParser";
-import {OptionParser} from "../../db/parsers/optionParser";
-import {UserDbEnum} from "../../common/enums/user/user-db.enum";
-import {Options} from "../../common/types/option/options.type";
-import {UserProperties} from "../../common/types/user/user.properties";
-import {UserValidator} from "../../entity/user/user-validator";
+import {UserEntity} from "../../entity/user/user.entity.js";
+import {CsvParser} from "../../db/parsers/csvParser.js";
+import {OptionParser} from "../../db/parsers/optionParser.js";
+import {UserDbEnum} from "../../common/enums/user/user-db.enum.js";
+import {Options} from "../../common/types/option/options.type.js";
+import {UserProperties} from "../../common/types/user/user.properties.js";
+import {UserValidator} from "../../entity/user/user-validator.js";
 
 class UserRepository {
     private currId: number;

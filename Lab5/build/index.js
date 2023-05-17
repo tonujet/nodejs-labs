@@ -1,19 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const env_enum_1 = require("./common/enums/env/env.enum");
-const routes_1 = require("./routes/routes");
-const api_routes_enum_1 = require("./common/enums/api/api-routes.enum");
-require("reflect-metadata");
-const page_not_found_validation_middleware_1 = require("./middleware/validators/page-not-found-validation.middleware");
-const app = (0, express_1.default)();
-const PORT = env_enum_1.ENV.APP.PORT;
-app.use(express_1.default.json());
-app.use(api_routes_enum_1.ApiRoutes.API, routes_1.apiRouter);
-app.use(page_not_found_validation_middleware_1.pageNotFoundValidationMiddleware);
+import express from "express";
+import { ENV } from "./common/enums/env/env.enum.js";
+import { apiRouter } from "./routes/routes.js";
+import { ApiRoutes } from "./common/enums/api/api-routes.enum.js";
+import 'reflect-metadata';
+import { pageNotFoundValidationMiddleware } from "./middleware/validators/page-not-found-validation.middleware.js";
+const app = express();
+const PORT = ENV.APP.PORT;
+app.use(express.json());
+app.use(ApiRoutes.API, apiRouter);
+app.use(pageNotFoundValidationMiddleware);
 app.listen(PORT, () => {
     console.log("Server was started | PORT = ", PORT);
 });

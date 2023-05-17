@@ -1,6 +1,7 @@
-import {UserRepository} from "../../repositories/repositories";
-import {UserEntity} from "../../entity/user/user.entity";
-import {UserProperties} from "../../common/types/user/user.properties";
+import {UserRepository} from "../../repositories/repositories.js";
+import {UserEntity} from "../../entity/user/user.entity.js";
+import {UserProperties} from "../../common/types/user/user.properties.js";
+
 
 
 class UserService {

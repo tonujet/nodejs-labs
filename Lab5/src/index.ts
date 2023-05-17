@@ -1,9 +1,9 @@
-import express, {Request, Response, Express} from "express";
-import {ENV} from "./common/enums/env/env.enum";
-import {apiRouter} from "./routes/routes";
-import {ApiRoutes} from "./common/enums/api/api-routes.enum";
+import express, {Express} from "express";
+import {ENV} from "./common/enums/env/env.enum.js";
+import {apiRouter} from "./routes/routes.js";
+import {ApiRoutes} from "./common/enums/api/api-routes.enum.js";
 import 'reflect-metadata';
-import {pageNotFoundValidationMiddleware} from "./middleware/validators/page-not-found-validation.middleware";
+import {pageNotFoundValidationMiddleware} from "./middleware/validators/page-not-found-validation.middleware.js";
 
 const app: Express = express();
 const PORT: number = ENV.APP.PORT;

@@ -1,5 +1,5 @@
-import {CsvParser} from "./csvParser";
-import {OptionParser} from "./optionParser";
+import {CsvParser} from "./csvParser.js";
+import {OptionParser} from "./optionParser.js";
 
 
 const csvParser = new CsvParser();

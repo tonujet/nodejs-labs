@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserValidator = exports.userValidator = void 0;
-const user_error_message_generator_1 = require("../../common/exceptions/user/user-error-message-generator");
+import { userErrMessGen } from "../../common/exceptions/user/user-error-message-generator.js";
 class UserValidator {
+    errMessGen;
     constructor(errMessGen) {
         this.errMessGen = errMessGen;
     }
@@ -24,6 +22,5 @@ class UserValidator {
         return user;
     }
 }
-exports.UserValidator = UserValidator;
-const userValidator = new UserValidator(user_error_message_generator_1.userErrMessGen);
-exports.userValidator = userValidator;
+const userValidator = new UserValidator(userErrMessGen);
+export { userValidator, UserValidator };
