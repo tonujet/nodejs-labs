@@ -2,7 +2,6 @@ import fsp from "fs/promises";
 import {UserEntity} from "../../entity/user/user.entity.js";
 import {CsvParser} from "../../db/parsers/csvParser.js";
 import {OptionParser} from "../../db/parsers/optionParser.js";
-import {UserDbEnum} from "../../common/enums/user/user-db.enum.js";
 import {Options} from "../../common/types/option/options.type.js";
 import {UserProperties} from "../../common/types/user/user.properties.js";
 import {UserValidator} from "../../entity/user/user-validator.js";
@@ -45,7 +44,7 @@ class UserRepository {
 
     async getAll(): Promise<UserEntity[]> | never {
         const header: string = this.header;
-        const data: string = await fsp.readFile(UserDbEnum.storage, {encoding: "utf-8"});
+        const data: string = await fsp.readFile(this.storagePath, {encoding: "utf-8"});
         return this.csvParser.parseEntities(header, data, this.keys);
     };
 

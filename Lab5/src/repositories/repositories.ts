@@ -1,5 +1,5 @@
 import {UserRepository} from "./user/user.repository.js";
-import {UserDbEnum} from "../common/enums/user/user-db.enum.js";
+import {ENV} from "../common/enums/env/env.enum.js";
 import {csvParser, optionParser} from "../db/parsers/parser.js";
 import {UserEntity} from "../entity/user/user.entity.js";
 import {userValidator} from "../entity/user/user-validator.js";
@@ -7,8 +7,8 @@ import {userValidator} from "../entity/user/user-validator.js";
 const userKeys: (keyof UserEntity)[] = ["id", "name", "username"] as (keyof UserEntity)[];
 
 const userRepository = new UserRepository(
-    UserDbEnum.storage,
-    UserDbEnum.options,
+    ENV.USER.STORAGE_PATH,
+    ENV.USER.OPTIONS_PATH,
     csvParser,
     optionParser,
     userKeys,
