@@ -17,9 +17,13 @@ export class PostEntity {
     @Column()
     text: string;
 
-    @ManyToOne(() => UserEntity, user => user.posts)
+    @ManyToOne(
+        () => UserEntity,
+        user => user.posts,
+        {nullable: false}
+    )
     user: UserEntity;
 
     @CreateDateColumn({name: 'created_at'})
-    dateCreation: Date
+    dateCreation: Date;
 }

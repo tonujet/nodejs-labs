@@ -33,7 +33,10 @@ export class UserEntity {
         street: string,
     };
 
-    @OneToMany(() => PostEntity, post => post.user)
+    @OneToMany(
+        () => PostEntity,
+            post => post.user
+    )
     posts: PostEntity[]
 
 }
