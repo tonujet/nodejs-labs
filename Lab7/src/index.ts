@@ -7,5 +7,4 @@ dataSource
     .then(() => console.log("Connected to db"))
     .catch(err => console.log(err));
 
-// console.log(process.env.HOST);
 
