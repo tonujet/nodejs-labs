@@ -7,7 +7,11 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node build/index.js",
-    "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\""
+    "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\"",
+    "typeorm": "npm run build && npx typeorm -d build/typeorm.config.js",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "migration:generate": "npm run typeorm -- migration:generate"
   },
   "author": "",
   "license": "ISC",
