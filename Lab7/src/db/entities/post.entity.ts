@@ -1,4 +1,4 @@
-import {Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Relation} from "typeorm";
 import {UserEntity} from "./user.entity.js";
 // id: uuid or number
 // dateCreation: Date required
@@ -22,7 +22,7 @@ export class PostEntity {
         user => user.posts,
         {nullable: false}
     )
-    user: UserEntity;
+    user: Relation<UserEntity>;
 
     @CreateDateColumn({name: 'created_at'})
     dateCreation: Date;
