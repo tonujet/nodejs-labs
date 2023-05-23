@@ -1,6 +1,4 @@
-enum ApiRoutes {
+export const enum ApiRoutes {
     API = "/api",
     USERS = "/users",
 }
-
-export { ApiRoutes };
