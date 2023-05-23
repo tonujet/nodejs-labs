@@ -1,3 +1,3 @@
-type Options = Record<string, string>
+type Options = Record<string, string>;
 
-export type {Options};
+export type { Options };

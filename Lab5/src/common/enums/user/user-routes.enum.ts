@@ -4,7 +4,6 @@ enum UserRoutes {
     DELETE = "/:id",
     UPDATE = "/:id",
     CREATE = "/",
-
 }
 
-export {UserRoutes};
+export { UserRoutes };

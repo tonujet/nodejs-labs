@@ -1,7 +1,6 @@
-import type {Options} from "@customTypes/option/options.type.js";
+import type { Options } from "@customTypes/option/options.type.js";
 
 class OptionParser {
-
     parseOptions(rawData: string) {
         const options = {} as Options;
         const lines = rawData.split("\n");
@@ -14,7 +13,7 @@ class OptionParser {
     }
 
     convertToOptions(options: Options) {
-        let rawData= "";
+        let rawData = "";
         let counter = 0;
         const entries: [string, string][] = Object.entries(options);
         const propertyLength = entries.length;
@@ -33,4 +32,4 @@ class OptionParser {
     }
 }
 
-export {OptionParser};
+export { OptionParser };

@@ -1,13 +1,11 @@
 class CsvParser {
-
     parseRaws(csvRaws: string) {
         return csvRaws.split("\n");
-    };
+    }
 
     parseRaw(csvRaw: string) {
         return csvRaw.split(",");
-    };
-
+    }
 
     parseEntities<T>(header: string, data: string, keys: (keyof T)[]) {
         const csvRaws = this.parseRaws(data);
@@ -22,7 +20,7 @@ class CsvParser {
 
     parseEntity<T>(csvRaw: string, keys: (keyof T)[]) {
         const entity = {} as T;
-        const entityValues = this.parseRaw(csvRaw)
+        const entityValues = this.parseRaw(csvRaw);
         for (const [i, key] of keys.entries()) {
             const value = entityValues[i];
             entity[key] = JSON.parse(value);
@@ -42,7 +40,6 @@ class CsvParser {
         return csvString;
     }
 
-
     entityToCsvRaw<T>(entity: T) {
         const values = Object.values(entity as Record<string, unknown>);
         const typedValues = values.map(value => JSON.stringify(value));
@@ -50,5 +47,4 @@ class CsvParser {
     }
 }
 
-
-export {CsvParser};
+export { CsvParser };

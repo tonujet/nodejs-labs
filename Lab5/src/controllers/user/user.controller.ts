@@ -1,21 +1,19 @@
-import {UserService} from "@services/services.js";
-import {Request, Response} from "express";
-import {validateOrReject} from "class-validator";
-import {plainToInstance} from "class-transformer";
-import {UserValidator} from "@entity/user/user-validator.js";
-import {CreateUserDto} from "@dtos/user/create-user-dto.js";
+import { UserService } from "@services/services.js";
+import { Request, Response } from "express";
+import { validateOrReject } from "class-validator";
+import { plainToInstance } from "class-transformer";
+import { UserValidator } from "@entity/user/user-validator.js";
+import { CreateUserDto } from "@dtos/user/create-user-dto.js";
 import {
     updateValidationOptions,
-    createValidationOptions
+    createValidationOptions,
 } from "@enums/validator/validator.js";
 
 class UserController {
-
     constructor(
         private readonly userService: UserService,
         private readonly userValidator: UserValidator
-    ) {
-    }
+    ) {}
 
     get = (req: Request, res: Response) => {
         const id = this.userValidator.isIdValid(req.params.id);
@@ -34,16 +32,19 @@ class UserController {
 
     delete = (req: Request, res: Response) => {
         const id = this.userValidator.isIdValid(req.params.id);
-        return this.userService.delete(id).then(deletedUser => res.json(deletedUser));
+        return this.userService
+            .delete(id)
+            .then(deletedUser => res.json(deletedUser));
     };
 
     update = async (req: Request, res: Response) => {
         const id = this.userValidator.isIdValid(req.params.id);
-        const userProps = plainToInstance(CreateUserDto, req.body);
+        const userProps = plainToInstance(CreateUserDto, req.body, {
+            exposeUnsetFields: true,
+        });
         await validateOrReject(userProps, updateValidationOptions);
         res.json(await this.userService.update(userProps, id));
     };
 }
 
-
-export {UserController};
+export { UserController };

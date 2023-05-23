@@ -61,8 +61,8 @@ class UserRepository {
                     keyof typeof CreateUserDto
                 >) {
                     const typedKey = key as keyof CreateUserDto;
-                    const propValue =  userProps[typedKey];
-                    if(propValue) user[typedKey] = propValue;
+                    const propValue = userProps[typedKey];
+                    if (propValue) user[typedKey] = propValue;
                 }
                 updatedUser = user;
             }

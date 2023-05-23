@@ -1,6 +1,6 @@
-import {ValidatorOptions} from "class-validator";
+import { ValidatorOptions } from "class-validator";
 
 export const createValidationOptions: ValidatorOptions = {
     whitelist: true,
-    forbidUnknownValues: true
-}
+    forbidUnknownValues: true,
+};
