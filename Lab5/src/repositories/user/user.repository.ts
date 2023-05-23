@@ -1,9 +1,9 @@
 import fsp from "fs/promises";
-import {UserEntity} from "../../entity/user/user.entity.js";
-import {CsvParser} from "../../db/parsers/csvParser.js";
-import {OptionParser} from "../../db/parsers/optionParser.js";
-import {UserValidator} from "../../entity/user/user-validator.js";
-import {CreateUserDto} from "../../dtos/user/create-user-dto.js";
+import {UserEntity} from "@entity/user/user.entity.js";
+import {CsvParser} from "@db/parsers/csvParser.js";
+import {OptionParser} from "@db/parsers/optionParser.js";
+import {UserValidator} from "@entity/user/user-validator.js";
+import {CreateUserDto} from "@dtos/user/create-user-dto.js";
 
 class UserRepository {
     private currId: number;

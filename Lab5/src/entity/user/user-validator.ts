@@ -1,5 +1,5 @@
-import {userErrMess} from "../../common/exceptions/user/user-error-messages.js";
-import {UserErrMessType} from "../../common/types/user/user-error-messages.type.js";
+import {userErrMess} from "@exceptions/user/user-error-messages.type.js";
+import {UserErrMessType} from "@customTypes/user/user-error-messages.js";
 import {UserEntity} from "./user.entity.js";
 
 class UserValidator {

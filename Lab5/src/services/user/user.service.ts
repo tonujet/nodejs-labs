@@ -1,5 +1,5 @@
-import {UserRepository} from "../../repositories/repositories.js";
-import {CreateUserDto} from "../../dtos/user/create-user-dto.js";
+import {UserRepository} from "@repositories/repositories.js";
+import {CreateUserDto} from "@dtos/user/create-user-dto.js";
 
 
 class UserService {

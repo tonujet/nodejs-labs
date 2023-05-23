@@ -1,11 +1,13 @@
-import {UserService} from "../../services/services.js";
+import {UserService} from "@services/services.js";
 import {Request, Response} from "express";
 import {validateOrReject} from "class-validator";
 import {plainToInstance} from "class-transformer";
-import {UserValidator} from "../../entity/user/user-validator.js";
-import {CreateUserDto} from "../../dtos/user/create-user-dto.js";
-import {updateValidationOptions} from "../../common/enums/validator/class-validator/update-validation options.js";
-import {createValidationOptions} from "../../common/enums/validator/class-validator/create-validation-options.js";
+import {UserValidator} from "@entity/user/user-validator.js";
+import {CreateUserDto} from "@dtos/user/create-user-dto.js";
+import {
+    updateValidationOptions,
+    createValidationOptions
+} from "@enums/validator/validator.js";
 
 class UserController {
 

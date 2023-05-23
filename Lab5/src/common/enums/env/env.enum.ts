@@ -7,7 +7,7 @@ const PORT = Number(process.env.PORT) || 3000;
 const OPTIONS_PATH = process.env.OPTIONS_PATH || "./options" ;
 const STORAGE_PATH = process.env.STORAGE_PATH || "./user.csv";
 
-const ENV = {
+export const ENV = {
     APP: {
         PORT
     },
@@ -16,5 +16,3 @@ const ENV = {
       STORAGE_PATH,
     }
 };
-
-export {ENV};
