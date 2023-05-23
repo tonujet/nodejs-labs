@@ -8,14 +8,12 @@ class UserValidator {
         private readonly errMessages: UserErrMessType
     ) {}
 
-    isIdValid(id: number) {
-        if (Number.isNaN(id) || id < 0) {
-            throw new Error(this.errMessages.incorrectId(id));
+    isIdValid(id: string) {
+        const parsedId = +id;
+        if (Number.isNaN(parsedId) || parsedId < 0) {
+            throw new Error(this.errMessages.incorrectId(parsedId));
         }
-    }
-
-    isIdUndefined(id: number | undefined) {
-        if (id) throw new Error(this.errMessages.redundantId(id));
+        return parsedId;
     }
 
     isExist(user: UserEntity | null | undefined, id: number){
