@@ -2,8 +2,8 @@ import fsp from "fs/promises";
 import {UserEntity} from "../../entity/user/user.entity.js";
 import {CsvParser} from "../../db/parsers/csvParser.js";
 import {OptionParser} from "../../db/parsers/optionParser.js";
-import {UserProperties} from "../../common/types/user/user.properties.js";
 import {UserValidator} from "../../entity/user/user-validator.js";
+import {CreateUserDto} from "../../dtos/user/create-user-dto.js";
 
 class UserRepository {
     private currId: number;
@@ -21,28 +21,29 @@ class UserRepository {
     }
 
 
-    async get(id: number) {
+    async get(id: number): Promise<UserEntity> {
         const users = await this.getAll();
         const receivedUser = users.find(user => user.id === id);
         this.userValidator.isExist(receivedUser, id);
         return receivedUser!;
     };
 
-    async getAll() {
-        const header = this.header;
-        const data = await fsp.readFile(this.storagePath, {encoding: "utf-8"});
-        return this.csvParser.parseEntities(header, data, this.keys);
+    getAll(): Promise<UserEntity[]> {
+        return fsp
+            .readFile(this.storagePath, {encoding: "utf-8"})
+            .then(users => this.csvParser.parseEntities(this.header, users, this.keys));
     };
 
-    async create(user: UserEntity) {
+    create(user: CreateUserDto): Promise<UserEntity> {
         const createdUser = {id: this.currId++, ...user};
         const csvLine = this.csvParser.entityToCsvRaw(createdUser);
-        await fsp.appendFile(this.storagePath, `\n${csvLine}`, {encoding: "utf-8"});
-        return createdUser;
+        return fsp
+            .appendFile(this.storagePath, `\n${csvLine}`, {encoding: "utf-8"})
+            .then(() => createdUser);
     };
 
 
-    async delete(id: number) {
+    async delete(id: number): Promise<UserEntity> {
         const deletedUser = await this.get(id);
         const users = await this.getAll();
         const updatedUsers = users.filter(user => user.id !== id);
@@ -51,15 +52,15 @@ class UserRepository {
     };
 
 
-    async update(properties: UserProperties, id: number) {
+    async update(userProps: CreateUserDto, id: number): Promise<UserEntity> {
         const users = await this.getAll();
         let updatedUser = null;
         const updatedUsers = users.map(user => {
             if (user.id === id) {
-                Object.keys(properties).forEach(key => {
-                    (user as UserProperties)[key as keyof UserEntity] =
-                        properties[key as keyof UserProperties];
-                });
+                for(const key in (userProps as Record<keyof CreateUserDto, keyof typeof CreateUserDto>)) {
+                    const typedKey = key as keyof CreateUserDto;
+                    user[typedKey] = userProps[typedKey];
+                }
                 updatedUser = user;
             }
             return user;
@@ -69,21 +70,20 @@ class UserRepository {
         return user;
     };
 
-    private async save(users: UserEntity[]) {
+    private save(users: UserEntity[]): Promise<void> {
         let csvRaws= this.csvParser.arrayToCsvRaws(users);
         if (csvRaws) csvRaws = `${this.header}\n${csvRaws}`;
         else csvRaws = `${this.header}`;
-        await fsp.writeFile(this.storagePath, csvRaws, {encoding: "utf-8"});
+        return fsp.writeFile(this.storagePath, csvRaws, {encoding: "utf-8"});
     }
 
-    async logOptions() {
+    logOptions(): Promise<void> {
         const options = {currId: String(this.currId)};
         const rawOptions = this.optionParser.convertToOptions(options);
-        await fsp.writeFile(this.optionsPath, rawOptions);
-        this.currId = Number(options.currId);
+        return fsp.writeFile(this.optionsPath, rawOptions);
     }
 
-    async readOptions() {
+    async readOptions(): Promise<void> {
         const rawOptions = await fsp.readFile(this.optionsPath, {encoding: "utf-8"});
         const options = this.optionParser.parseOptions(rawOptions);
         this.currId = Number(options.currId);
