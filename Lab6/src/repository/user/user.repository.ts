@@ -1,4 +1,4 @@
-import { Client } from "pg";
+import { Pool } from "pg";
 import { UserWithChannelDto } from "@dto/user/user-with-channel.dto.js";
 import { BriefVideoDto } from "@dto/video/brief.video.dto.js";
 import { UserWithSubscriptionsDto } from "@dto/user/user-with-subscriptions.dto.js";
@@ -7,7 +7,7 @@ import { SubscriptionLevelEnum } from "@enum/subcription/subscription-level.enum
 export class UserRepository {
     public readonly tablename;
 
-    constructor(private readonly dbConnection: Client, tablename: string) {
+    constructor(private readonly dbConnection: Pool, tablename: string) {
         this.tablename = tablename;
     }
 

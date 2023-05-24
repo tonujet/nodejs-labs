@@ -1,13 +1,18 @@
 import pg from "pg"
-import dotenv from "dotenv"
-dotenv.config()
+import {EnvEnum} from "@enum/env/env.enum.js";
 
-const client = new pg.Client({
-    host: process.env.HOST,
-    port: +(process.env.PORT || 3000),
-    database: process.env.DATABASE,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
+const {DB} = EnvEnum;
+
+// connections = ((2 * core_count) + no_of_disks)
+const pool = new pg.Pool({
+    host: DB.HOST,
+    port: +(DB.PORT || 3000),
+    database: DB.NAME,
+    user: DB.USER,
+    password: DB.PASSWORD,
+    max: +(DB.CONNECTIONS_NUMBER || 20),
+    idleTimeoutMillis: +(DB.CONN_IDLE_TIMEOUT || 30000),
+    connectionTimeoutMillis: +(DB.CONNECTION_TIMEOUT || 2000),
 });
 
 // auto parse 64bit integer string to number
@@ -16,9 +21,5 @@ pg.types.setTypeParser(20, parseInt)
 
 
 
-await client
-    .connect()
-    .then(() => console.log('connected '))
-    .catch((err) => console.error('connection error', err))
 
-export {client as dbConnection}
+export {pool as dbConnection}

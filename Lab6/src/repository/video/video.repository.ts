@@ -1,11 +1,11 @@
-import { Client } from "pg";
+import { Pool } from "pg";
 import { VideoDto } from "@dto/video/video.dto.js";
 import { VideoWithLikeCountDto } from "@dto/video/video-with-like-count.dto.js";
 
 export class VideoRepository {
     public readonly tablename;
 
-    constructor(private readonly dbConnection: Client, tablename: string) {
+    constructor(private readonly dbConnection: Pool, tablename: string) {
         this.tablename = tablename;
     }
 

@@ -1,11 +1,11 @@
-import { Client } from "pg";
+import { Pool } from "pg";
 import { ChannelPlusSubscriberNumberDto } from "@dto/channel/channel-plus-subcriber-number.dto.js";
 
 
 export class ChannelRepository {
     public readonly tablename;
 
-    constructor(private readonly dbConnection: Client, tablename: string) {
+    constructor(private readonly dbConnection: Pool, tablename: string) {
         this.tablename = tablename;
     }
 
