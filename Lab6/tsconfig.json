@@ -17,5 +17,15 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "baseUrl": "src",
+    "paths": {
+      "@common/*": ["common/*"],
+      "@enum/*": ["common/enum/*"],
+      "@type/*": ["common/type/*"],
+      "@controller/*": ["controller/*"],
+      "@dto/*": ["dto/*"],
+      "@repository/*": ["repository/*"],
+      "@view/*": ["view/*"]
+    }
   }
 }

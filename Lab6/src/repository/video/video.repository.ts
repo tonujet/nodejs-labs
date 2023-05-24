@@ -1,6 +1,6 @@
 import { Client } from "pg";
-import { VideoDto } from "../../dto/video/video.dto.js";
-import { VideoWithLikeCountDto } from "../../dto/video/video-with-like-count.dto.js";
+import { VideoDto } from "@dto/video/video.dto.js";
+import { VideoWithLikeCountDto } from "@dto/video/video-with-like-count.dto.js";
 
 export class VideoRepository {
     public readonly tablename;

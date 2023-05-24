@@ -2,7 +2,7 @@ import { URL } from "url";
 import terminalImage from "terminal-image";
 import { fetch, RequestInit } from "undici";
 import { Buffer } from "buffer";
-import { Entries } from "../../common/type/entries.type.js";
+import { Entries } from "@type/entries.type.js";
 
 
 export class ConsoleView {

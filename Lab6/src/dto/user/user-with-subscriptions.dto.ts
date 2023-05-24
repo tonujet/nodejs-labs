@@ -1,4 +1,4 @@
-import {SubscriptionLevelEnum} from "../../common/enum/subcription/subscription-level.enum.js";
+import {SubscriptionLevelEnum} from "@enum/subcription/subscription-level.enum.js";
 
 export interface UserWithSubscriptionsDto {
     name: string,

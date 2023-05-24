@@ -1,5 +1,5 @@
-import { VideoRepository } from "../../repository/video/video.repository.js";
-import { ConsoleView } from "../../view/console/console.view.js";
+import { VideoRepository } from "@repository/video/video.repository.js";
+import { ConsoleView } from "@view/console/console.view.js";
 
 export class VideoController {
 

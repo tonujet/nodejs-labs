@@ -1,5 +1,5 @@
-import { ChannelRepository } from "../../repository/channel/channel.repository.js";
-import { ConsoleView } from "../../view/console/console.view.js";
+import { ChannelRepository } from "@repository/channel/channel.repository.js";
+import { ConsoleView } from "@view/console/console.view.js";
 
 export class ChannelController {
     constructor(

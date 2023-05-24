@@ -1,5 +1,5 @@
 import { Client } from "pg";
-import { ChannelPlusSubscriberNumberDto } from "../../dto/channel/channel-plus-subcriber-number.dto.js";
+import { ChannelPlusSubscriberNumberDto } from "@dto/channel/channel-plus-subcriber-number.dto.js";
 
 
 export class ChannelRepository {
