@@ -1,11 +1,10 @@
-import {IChannelController} from "../../common/interface/controller/channel/IChannel.controller.js";
-import {IView} from "../../common/interface/view/IView.js";
-import {IChannelRepository} from "../../common/interface/repository/channel/IChannel.repository.js";
+import { ChannelRepository } from "../../repository/channel/channel.repository.js";
+import { ConsoleView } from "../../view/console/console.view.js";
 
-export class ChannelController implements IChannelController {
+export class ChannelController {
     constructor(
-        private readonly channelRepo: IChannelRepository,
-        private readonly view: IView,
+        private readonly channelRepo: ChannelRepository,
+        private readonly view: ConsoleView,
     ) {}
 
     async updateChannelInfoView(id: string) {

@@ -1,11 +1,10 @@
-import {Client} from "pg";
-import {UserWithChannelDto} from "../../dto/user/user-with-channel.dto.js";
-import {BriefVideoDto} from "../../dto/video/brief.video.dto.js";
-import {UserWithSubscriptionsDto} from "../../dto/user/user-with-subscriptions.dto.js";
-import {SubscriptionLevelEnum} from "../../common/enum/subcription/subscription-level.enum.js";
-import {IUserRepository} from "../../common/interface/repository/user/IUser.repository.js";
+import { Client } from "pg";
+import { UserWithChannelDto } from "../../dto/user/user-with-channel.dto.js";
+import { BriefVideoDto } from "../../dto/video/brief.video.dto.js";
+import { UserWithSubscriptionsDto } from "../../dto/user/user-with-subscriptions.dto.js";
+import { SubscriptionLevelEnum } from "../../common/enum/subcription/subscription-level.enum.js";
 
-export class UserRepository implements IUserRepository{
+export class UserRepository {
     public readonly tablename;
 
     constructor(private readonly dbConnection: Client, tablename: string) {

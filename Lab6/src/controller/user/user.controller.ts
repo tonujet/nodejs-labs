@@ -1,12 +1,10 @@
-import {UserRepository} from "../../repository/user/user.repository.js";
-import {IUserController} from "../../common/interface/controller/user/IUser.controller.js";
-import {IView} from "../../common/interface/view/IView.js";
-import {IUserRepository} from "../../common/interface/repository/user/IUser.repository.js";
+import { UserRepository } from "../../repository/user/user.repository.js";
+import { ConsoleView } from "../../view/console/console.view.js";
 
-export class UserController implements IUserController{
+export class UserController {
     constructor(
-        private readonly userRepo: IUserRepository,
-        private readonly view: IView
+        private readonly userRepo: UserRepository,
+        private readonly view: ConsoleView
     ) {}
 
     async updateChannelView() {

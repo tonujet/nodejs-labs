@@ -1,9 +1,8 @@
-import {Client} from "pg";
-import {ChannelPlusSubscriberNumberDto} from "../../dto/channel/channel-plus-subcriber-number.dto.js";
-import {IChannelRepository} from "../../common/interface/repository/channel/IChannel.repository.js";
+import { Client } from "pg";
+import { ChannelPlusSubscriberNumberDto } from "../../dto/channel/channel-plus-subcriber-number.dto.js";
 
 
-export class ChannelRepository implements IChannelRepository{
+export class ChannelRepository {
     public readonly tablename;
 
     constructor(private readonly dbConnection: Client, tablename: string) {

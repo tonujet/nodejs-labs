@@ -1,11 +1,11 @@
-import { IView } from "../../common/interface/view/IView.js";
 import { URL } from "url";
 import terminalImage from "terminal-image";
 import { fetch, RequestInit } from "undici";
 import { Buffer } from "buffer";
+import { Entries } from "../../common/type/entries.type.js";
 
 
-export class ConsoleView implements IView {
+export class ConsoleView {
   async showWithTablename<T>(tablename: string, title: string, data: T): Promise<void> {
     (await this.logStripLine()
         .logTableName(tablename)
@@ -57,23 +57,22 @@ export class ConsoleView implements IView {
       }
       console.log("]");
     } else {
-      await this.logEntity(data as Object);
+      await this.logEntity(data);
     }
     return this;
   }
 
-  private async logEntity<T extends Object>(item: T) {
+  private async logEntity<T>(item: T) {
     console.log("{");
-    for (const [key, value] of Object.entries(item)) {
+    for (const [key, value] of Object.entries(item as Entries<T>)) {
       console.log(`  ${key}:  ${value}`);
-      if (this.isUrl(value)) {
+      if (typeof value === "string" && this.isUrl(value)) {
         try {
           const pictureBuffer = await this.fetchPictureOrAbort(value, 100);
           console.log(await terminalImage.buffer(Buffer.from(pictureBuffer)));
         } catch (e) {
           console.log("\x1b[31m", "\tCannot load picture");
         }
-
       }
     }
     console.log("}");

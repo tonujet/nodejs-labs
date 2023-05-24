@@ -1,9 +1,8 @@
-import {Client} from "pg";
-import {VideoDto} from "../../dto/video/video.dto.js";
-import {VideoWithLikeCountDto} from "../../dto/video/video-with-like-count.dto.js";
-import {IVideoRepository} from "../../common/interface/repository/video/IVideo.repository.js";
+import { Client } from "pg";
+import { VideoDto } from "../../dto/video/video.dto.js";
+import { VideoWithLikeCountDto } from "../../dto/video/video-with-like-count.dto.js";
 
-export class VideoRepository implements IVideoRepository{
+export class VideoRepository {
     public readonly tablename;
 
     constructor(private readonly dbConnection: Client, tablename: string) {
