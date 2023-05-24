@@ -5,11 +5,11 @@ import { UserWithSubscriptionsDto } from "@dto/user/user-with-subscriptions.dto.
 import { SubscriptionLevelEnum } from "@enum/subcription/subscription-level.enum.js";
 
 export class UserRepository {
-    public readonly tablename;
 
-    constructor(private readonly dbConnection: Pool, tablename: string) {
-        this.tablename = tablename;
-    }
+    constructor(
+      private readonly dbConnection: Pool,
+      public readonly tablename: string
+    ) {}
 
     async getUsersWithChannel() {
       const queryText = `

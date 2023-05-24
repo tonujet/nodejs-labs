@@ -3,30 +3,26 @@ import { VideoDto } from "@dto/video/video.dto.js";
 import { VideoWithLikeCountDto } from "@dto/video/video-with-like-count.dto.js";
 
 export class VideoRepository {
-    public readonly tablename;
 
-    constructor(private readonly dbConnection: Pool, tablename: string) {
-        this.tablename = tablename;
-    }
+    constructor(
+      private readonly dbConnection: Pool,
+      public readonly tablename: string
+    ) {}
 
-    async getFavoriteVideos() {
-        const result = await this.dbConnection.query<VideoDto>(`
+    async getVideos(names: string[]) {
+        const queryText = `
             SELECT * 
             FROM videos
-            WHERE id IN (
-            '17f760dc-6a39-45a7-9ad4-3f158fd96805',
-            '9fe36789-4a45-409e-bf8d-540a67a49e6a',
-            '6710e07b-11e0-410d-bd20-70839fd2aa5f',
-            'e1b1341f-e657-4866-b9e9-8742805cf1f4',
-            '90750e4d-f449-4853-a3ae-c1860b7ed501'
-            )
-        `);
+            WHERE id = ANY ($1)
+        `;
+        const values = [names];
+        const result = await this.dbConnection.query<VideoDto>(queryText, values);
         return result.rows;
     }
 
-    async getTheMostPopularVideos(){
-        const result = await this.dbConnection.query<VideoWithLikeCountDto>(`
-            SELECT
+    async getTheMostPopularVideos(limit: number, positiveLikes: number){
+        const queryText = `
+             SELECT
                 v.id,
                 v.channel_id,
                 v.title,
@@ -46,10 +42,12 @@ export class VideoRepository {
                                    ON v.id = l.video_id
                      GROUP BY v.id
                  ) v
-            WHERE v.positive_like_count > 4
+            WHERE v.positive_like_count > $1
             ORDER BY total_like_count DESC
-                LIMIT 10;
-        `)
+                LIMIT $2;
+        `
+        const values = [positiveLikes, limit]
+        const result = await this.dbConnection.query<VideoWithLikeCountDto>(queryText, values)
         return result.rows
     }
 }

@@ -3,11 +3,11 @@ import { ChannelPlusSubscriberNumberDto } from "@dto/channel/channel-plus-subcri
 
 
 export class ChannelRepository {
-  public readonly tablename;
 
-  constructor(private readonly dbConnection: Pool, tablename: string) {
-    this.tablename = tablename;
-  }
+  constructor(
+    private readonly dbConnection: Pool,
+    public readonly tablename: string
+  ) {}
 
   async getInfoById(id: string) {
     const queryText = `
@@ -18,11 +18,8 @@ export class ChannelRepository {
         WHERE c.id = $1
         GROUP BY c.id
     `;
-
     const values = [id];
     const result = await this.dbConnection.query<ChannelPlusSubscriberNumberDto>(queryText, values);
     return result.rows[0];
   }
-
-
 }

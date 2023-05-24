@@ -9,19 +9,19 @@ export class VideoController {
   ) {
   }
 
-  async updateFavoriteVideosView() {
+  async updateVideosView(...names: string[]) {
     await this.view.showWithTablename(
       this.videoRepo.tablename,
       "My favorite videos",
-      await this.videoRepo.getFavoriteVideos()
+      await this.videoRepo.getVideos(names)
     );
   }
 
-  async updateMostPopularVideosView() {
+  async updateMostPopularVideosView(limit: number, positiveLikes: number) {
     await this.view.showWithTablename(
       this.videoRepo.tablename,
       "The most popular videos",
-      await this.videoRepo.getTheMostPopularVideos()
+      await this.videoRepo.getTheMostPopularVideos(limit, positiveLikes)
     );
   }
 }
