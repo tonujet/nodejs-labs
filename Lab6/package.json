@@ -20,10 +20,10 @@
     "concurrently": "^8.0.1",
     "dotenv": "^16.0.3",
     "eslint-config-prettier": "^8.8.0",
-    "got": "^12.6.0",
     "pg": "^8.11.0",
     "terminal-image": "^2.0.0",
-    "tsc-alias": "^1.8.6"
+    "tsc-alias": "^1.8.6",
+    "undici": "^5.22.1"
   },
   "devDependencies": {
     "@types/node": "^20.1.7",
