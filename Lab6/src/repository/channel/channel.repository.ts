@@ -3,23 +3,26 @@ import { ChannelPlusSubscriberNumberDto } from "@dto/channel/channel-plus-subcri
 
 
 export class ChannelRepository {
-    public readonly tablename;
+  public readonly tablename;
 
-    constructor(private readonly dbConnection: Pool, tablename: string) {
-        this.tablename = tablename;
-    }
+  constructor(private readonly dbConnection: Pool, tablename: string) {
+    this.tablename = tablename;
+  }
 
-    async getInfoById(id: string) {
-        const result = await this.dbConnection.query<ChannelPlusSubscriberNumberDto>(`
-            SELECT c.*, COUNT(s) as subscribers
-            FROM ${this.tablename} c
-            JOIN subscriptions s
-            ON c.id = s.channel_id
-            WHERE c.id = '${id}'
-            GROUP BY c.id
-       `);
-        return result.rows[0];
-    }
+  async getInfoById(id: string) {
+    const queryText = `
+        SELECT c.*, COUNT(s) as subscribers
+        FROM channels c
+        JOIN subscriptions s
+        ON c.id = s.channel_id
+        WHERE c.id = $1
+        GROUP BY c.id
+    `;
+
+    const values = [id];
+    const result = await this.dbConnection.query<ChannelPlusSubscriberNumberDto>(queryText, values);
+    return result.rows[0];
+  }
 
 
 }

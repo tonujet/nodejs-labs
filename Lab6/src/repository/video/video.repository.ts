@@ -12,7 +12,7 @@ export class VideoRepository {
     async getFavoriteVideos() {
         const result = await this.dbConnection.query<VideoDto>(`
             SELECT * 
-            FROM ${this.tablename}
+            FROM videos
             WHERE id IN (
             '17f760dc-6a39-45a7-9ad4-3f158fd96805',
             '9fe36789-4a45-409e-bf8d-540a67a49e6a',
@@ -41,7 +41,7 @@ export class VideoRepository {
                          COUNT(l) as total_like_count,
                          COUNT(l.positive = true OR NULL) as positive_like_count,
                          v.*
-                     FROM ${this.tablename} v
+                     FROM videos v
                               JOIN likes l
                                    ON v.id = l.video_id
                      GROUP BY v.id
