@@ -37,15 +37,13 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "**/*.test.ts",
-      "**/*.spec.ts",
       ".git",
       "node_modules"
     ],
     "watch": [
       "src"
     ],
-    "exec": "npm run build && node build/index.js",
-    "ext": "ts, js"
+    "exec": "npm run build && npm start",
+    "ext": "ts"
   }
 }
