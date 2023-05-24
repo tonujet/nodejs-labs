@@ -68,7 +68,7 @@ export class ConsoleView {
       console.log(`  ${key}:  ${value}`);
       if (typeof value === "string" && this.isUrl(value)) {
         try {
-          const pictureBuffer = await this.fetchPictureOrAbort(value, 100);
+          const pictureBuffer = await this.fetchPictureOrAbort(value, 200);
           console.log(await terminalImage.buffer(Buffer.from(pictureBuffer)));
         } catch (e) {
           console.log("\x1b[31m", "\tCannot load picture");

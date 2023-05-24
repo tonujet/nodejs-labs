@@ -1,4 +1,4 @@
-export enum TablenamesEnum {
+export const enum TablenamesEnum {
     USER = "users",
     CHANNEL = "channels",
     VIDEO = "videos",
