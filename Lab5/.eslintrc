@@ -12,5 +12,9 @@
   "rules": {
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "next" }],
     "@typescript-eslint/no-non-null-assertion": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   }
 }
