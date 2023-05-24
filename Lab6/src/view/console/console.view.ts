@@ -4,24 +4,31 @@ import { fetch, RequestInit } from "undici";
 import { Buffer } from "buffer";
 import { Entries } from "@type/entries.type.js";
 
-
 export class ConsoleView {
-  async showWithTablename<T>(tablename: string, title: string, data: T): Promise<void> {
-    (await this.logStripLine()
-        .logTableName(tablename)
-        .logTitle(title)
-        .log("Result: ")
-        .logData(data)
-    )
-      .logStripLine()
-      .log("\n\n\n\n");
+  showWithTablename<T>(
+    tablename: string,
+    title: string,
+    data: T
+  ): Promise<void> {
+    return this.logStripLine()
+      .logTableName(tablename)
+      .logTitle(title)
+      .log("Result: ")
+      .logData(data)
+      .then(() => {
+        this.logStripLine().log("\n\n\n\n");
+      });
   }
 
   private logStripLine() {
-    console.log("==============================================================================" +
-      "=================================================");
-    console.log("==============================================================================" +
-      "=================================================");
+    console.log(
+      "==============================================================================" +
+        "================================================="
+    );
+    console.log(
+      "==============================================================================" +
+        "================================================="
+    );
     return this;
   }
 
@@ -42,12 +49,12 @@ export class ConsoleView {
     } catch (err) {
       return false;
     }
-  };
+  }
 
   private log(...args: unknown[]) {
     console.log(...args);
     return this;
-  };
+  }
 
   private async logData<T>(data: T) {
     if (Array.isArray(data)) {
@@ -62,7 +69,7 @@ export class ConsoleView {
     return this;
   }
 
-  private async logEntity<T>(item: T) {
+  private async logEntity<T>(item: T): Promise<this> {
     console.log("{");
     for (const [key, value] of Object.entries(item as Entries<T>)) {
       console.log(`  ${key}:  ${value}`);
@@ -79,12 +86,16 @@ export class ConsoleView {
     return this;
   }
 
-  private async fetchPictureOrAbort(url: string, time: number, options?: RequestInit): Promise<Buffer> {
+  private async fetchPictureOrAbort(
+    url: string,
+    time: number,
+    options?: RequestInit
+  ): Promise<Buffer> {
     const controller = new AbortController();
     const fetchAbortTimeout = setTimeout(() => controller.abort(), time);
     const response = await fetch(url, {
       ...options,
-      signal: controller.signal
+      signal: controller.signal,
     });
     clearTimeout(fetchAbortTimeout);
     return response.arrayBuffer().then(arrBuffer => Buffer.from(arrBuffer));

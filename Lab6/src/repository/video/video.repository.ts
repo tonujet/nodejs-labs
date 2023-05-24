@@ -3,25 +3,28 @@ import { VideoDto } from "@dto/video/video.dto.js";
 import { VideoWithLikeCountDto } from "@dto/video/video-with-like-count.dto.js";
 
 export class VideoRepository {
+  constructor(
+    private readonly dbConnection: Pool,
+    public readonly tablename: string
+  ) {}
 
-    constructor(
-      private readonly dbConnection: Pool,
-      public readonly tablename: string
-    ) {}
-
-    async getVideos(names: string[]) {
-        const queryText = `
+  getVideos(names: string[]): Promise<VideoDto[]> {
+    const queryText = `
             SELECT * 
             FROM videos
             WHERE id = ANY ($1)
         `;
-        const values = [names];
-        const result = await this.dbConnection.query<VideoDto>(queryText, values);
-        return result.rows;
-    }
+    const values = [names];
+    return this.dbConnection
+      .query<VideoDto>(queryText, values)
+      .then(result => result.rows);
+  }
 
-    async getTheMostPopularVideos(limit: number, positiveLikes: number){
-        const queryText = `
+  getTheMostPopularVideos(
+    limit: number,
+    positiveLikes: number
+  ): Promise<VideoWithLikeCountDto[]> {
+    const queryText = `
              SELECT
                 v.id,
                 v.channel_id,
@@ -45,9 +48,10 @@ export class VideoRepository {
             WHERE v.positive_like_count > $1
             ORDER BY total_like_count DESC
                 LIMIT $2;
-        `
-        const values = [positiveLikes, limit]
-        const result = await this.dbConnection.query<VideoWithLikeCountDto>(queryText, values)
-        return result.rows
-    }
+        `;
+    const values = [positiveLikes, limit];
+    return this.dbConnection
+      .query<VideoWithLikeCountDto>(queryText, values)
+      .then(result => result.rows);
+  }
 }

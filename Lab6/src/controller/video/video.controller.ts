@@ -2,12 +2,10 @@ import { VideoRepository } from "@repository/video/video.repository.js";
 import { ConsoleView } from "@view/console/console.view.js";
 
 export class VideoController {
-
   constructor(
     private readonly videoRepo: VideoRepository,
     private readonly view: ConsoleView
-  ) {
-  }
+  ) {}
 
   async updateVideosView(...names: string[]) {
     await this.view.showWithTablename(

@@ -1,7 +1,5 @@
-import {ConsoleView} from "./console/console.view.js";
-
+import { ConsoleView } from "./console/console.view.js";
 
 const consoleView = new ConsoleView();
 
-
-export {consoleView}
+export { consoleView };

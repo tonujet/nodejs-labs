@@ -3,12 +3,10 @@ import process from "process";
 import { EnvVarSetterType } from "@type/env/env-var-setter.type.js";
 import { EnvEnumType } from "@type/env/env-enum.type.js";
 
-
 config();
 
-
 const EnvEnum: EnvEnumType = {
-  DB: {}
+  DB: {},
 };
 
 const setDbKeys: EnvVarSetterType = (key, value, envVarStart) => {
@@ -17,10 +15,8 @@ const setDbKeys: EnvVarSetterType = (key, value, envVarStart) => {
 };
 
 const envVarSetters: Record<string, EnvVarSetterType> = {
-  "DB_": setDbKeys
+  DB_: setDbKeys,
 };
-
-
 
 for (const envVarStart of Object.keys(envVarSetters)) {
   for (const [key, value] of Object.entries(process.env)) {
@@ -30,6 +26,5 @@ for (const envVarStart of Object.keys(envVarSetters)) {
     }
   }
 }
-
 
 export { EnvEnum };

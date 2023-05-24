@@ -5,14 +5,13 @@ import { UserWithSubscriptionsDto } from "@dto/user/user-with-subscriptions.dto.
 import { SubscriptionLevelEnum } from "@enum/subcription/subscription-level.enum.js";
 
 export class UserRepository {
+  constructor(
+    private readonly dbConnection: Pool,
+    public readonly tablename: string
+  ) {}
 
-    constructor(
-      private readonly dbConnection: Pool,
-      public readonly tablename: string
-    ) {}
-
-    async getUsersWithChannel() {
-      const queryText = `
+  getUsersWithChannel(): Promise<UserWithChannelDto[]> {
+    const queryText = `
             SELECT 
                 u.id, u.name,
                 u.avatar_url, c.photo_url, 
@@ -21,13 +20,14 @@ export class UserRepository {
             JOIN channels c 
             ON u.id = c.user_id
             ORDER BY created_at ASC
-      `
-        const result = await this.dbConnection.query<UserWithChannelDto>(queryText);
-        return result.rows;
-    }
+      `;
+    return this.dbConnection
+      .query<UserWithChannelDto>(queryText)
+      .then(result => result.rows);
+  }
 
-    async getVideosFromSubscriptionsByName(name: string) {
-        const queryText = `
+  getVideosFromSubscriptionsByName(name: string): Promise<BriefVideoDto[]> {
+    const queryText = `
             SELECT 
                 v.id, v.title, v.preview_url,
                 v.duration, v.published_at
@@ -41,14 +41,16 @@ export class UserRepository {
             WHERE u.name = $1
             ORDER BY v.published_at ASC
         `;
-        const values = [name];
-        const result = await this.dbConnection.query<BriefVideoDto>(queryText, values);
-        return result.rows
-    }
+    const values = [name];
+    return this.dbConnection
+      .query<BriefVideoDto>(queryText, values)
+      .then(result => result.rows);
+  }
 
-
-    async getSortedSubscriptionsByName(name: string) {
-        const queryText = `
+  getSortedSubscriptionsByName(
+    name: string
+  ): Promise<UserWithSubscriptionsDto[]> {
+    const queryText = `
             SELECT u.name,
                    u.avatar_url,
                    c.photo_url,
@@ -68,13 +70,16 @@ export class UserRepository {
                          WHEN $5 THEN 1
                          END,
                      s.subscribed_at ASC
-        `
-        const values = [
-          name,
-          SubscriptionLevelEnum.STANDART, SubscriptionLevelEnum.FAN,
-          SubscriptionLevelEnum.FOLLOWER, SubscriptionLevelEnum.VIP
-        ]
-        const result = await this.dbConnection.query<UserWithSubscriptionsDto>(queryText, values)
-        return result.rows
-    }
+        `;
+    const values = [
+      name,
+      SubscriptionLevelEnum.STANDART,
+      SubscriptionLevelEnum.FAN,
+      SubscriptionLevelEnum.FOLLOWER,
+      SubscriptionLevelEnum.VIP,
+    ];
+    return this.dbConnection
+      .query<UserWithSubscriptionsDto>(queryText, values)
+      .then(result => result.rows);
+  }
 }
