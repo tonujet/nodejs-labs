@@ -1,15 +1,34 @@
-export class CreateUserDto{
+import {
+  IsNotEmpty,
+  IsString,
+  IsEmail,
+  IsNumber,
+  ValidateNested,
+  MaxLength,
+  Max,
+} from "class-validator";
+import { Type } from "class-transformer";
+import { UserAddressDto } from "./user-address-dto.js";
 
-    username: string;
+export class CreateUserDto {
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(200)
+  username: string;
 
-    email: string;
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
 
-    age: number;
+  @IsNumber()
+  @IsNotEmpty()
+  @Max(150)
+  age: number;
 
-    info?: string;
+  @IsString()
+  info?: string;
 
-    address?: {
-        city: string,
-        street: string,
-    };
+  @ValidateNested()
+  @Type(() => UserAddressDto)
+  address?: UserAddressDto;
 }

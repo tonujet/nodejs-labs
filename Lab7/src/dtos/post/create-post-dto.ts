@@ -1,5 +1,15 @@
+import { IsString, IsUUID, IsNotEmpty } from "class-validator";
+
 export class CreatePostDto {
-    title: string;
-    text: string;
-    userId: string;
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  text: string;
+
+  @IsNotEmpty()
+  @IsUUID()
+  userId: string;
 }
