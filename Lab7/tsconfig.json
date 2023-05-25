@@ -17,5 +17,18 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "baseUrl": "src",
+    "paths": {
+      "@common/*": ["common/*"],
+      "@enum/*": ["common/enums/*"],
+      "@type/*": ["common/types/*"],
+      "@controller/*": ["controllers/*"],
+      "@dto/*": ["dtos/*"],
+      "@entity/*": ["db/entities/*"],
+      "@repository/*": ["repositories/*"],
+      "@router/*": ["routers/*"],
+      "@service/*": ["services/*"],
+      "@validation/*": ["validation/*"],
+    }
   }
 }
