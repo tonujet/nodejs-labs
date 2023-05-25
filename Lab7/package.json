@@ -8,6 +8,10 @@
     "build": "tsc",
     "start": "npm run build && node build/index.js",
     "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\"",
+    "lint": "eslint --ignore-path .eslintignore --ext .ts",
+    "lint:fix": "eslint --ignore-path .eslintignore --ext .ts --fix",
+    "format": "prettier --ignore-path .prettierignore --check \"**/*.+(ts|json)\"",
+    "format:fix": "prettier --ignore-path .prettierignore --write \"**/*.+(ts|json)\"",
     "typeorm": "npm run build && npx typeorm -d build/typeorm.config.js",
     "migration:run": "npm run typeorm -- migration:run",
     "migration:revert": "npm run typeorm -- migration:revert",
@@ -20,9 +24,10 @@
     "class-validator": "^0.14.0",
     "concurrently": "^8.0.1",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
+    "express": "^5.0.0-beta.1",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
+    "tsc-alias": "^1.8.6",
     "typeorm": "^0.3.16",
     "uuid": "^9.0.0"
   },
@@ -30,7 +35,12 @@
     "@types/express": "^4.17.17",
     "@types/node": "^20.2.1",
     "@types/uuid": "^9.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
     "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
     "typescript": "^5.0.4"
   }
 }
