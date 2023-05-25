@@ -17,8 +17,17 @@ export class UserController {
     return this.userService.get(uuid).then(user => res.json(user));
   };
 
+  getWithPosts = (req: Request, res: Response) => {
+    const uuid = validateUUID(req.params.id);
+    return this.userService.getWithPosts(uuid).then(user => res.json(user));
+  };
+
   getAll = (req: Request, res: Response) => {
     return this.userService.getAll().then(users => res.json(users));
+  };
+
+  getAllWithPosts = (req: Request, res: Response) => {
+    return this.userService.getAllWithPosts().then(users => res.json(users));
   };
 
   create = async (req: Request, res: Response) => {

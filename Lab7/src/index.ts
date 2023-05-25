@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { dataSource } from "./typeorm.config.js";
 import express from "express";
-import { EnvEnum } from "./common/enums/env/env.enum.js";
+import { EnvEnum } from "@enum/env/env.enum.js";
 import { apiRouter } from "./routers/api.router.js";
 
 const app = express();

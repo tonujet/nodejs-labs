@@ -21,6 +21,7 @@ export class PostController {
     return this.postService.getAll().then(posts => res.json(posts));
   };
 
+
   create = async (req: Request, res: Response) => {
     const createPostDto = plainToInstance(CreatePostDto, req.body);
     await validateOrReject(createPostDto, createValidationOptions);

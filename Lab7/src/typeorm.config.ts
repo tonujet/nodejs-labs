@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 import path from "path";
-import { EnvEnum } from "./common/enums/env/env.enum.js";
+import { EnvEnum } from "@enum/env/env.enum.js";
 import { fileURLToPath } from "url";
 
 const { DB } = EnvEnum;

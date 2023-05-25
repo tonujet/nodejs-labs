@@ -7,9 +7,16 @@ export class UserService {
   get(id: string) {
     return this.userRepo.get(id);
   }
+  getWithPosts(id: string) {
+    return this.userRepo.getWithPosts(id);
+  }
 
   getAll() {
     return this.userRepo.getAll();
+  }
+
+  getAllWithPosts() {
+    return this.userRepo.getAllWithPosts();
   }
 
   create(createUserDto: CreateUserDto) {

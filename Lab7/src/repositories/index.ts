@@ -1,6 +1,6 @@
 import { dataSource } from "../typeorm.config.js";
-import { UserEntity } from "../db/entities/user.entity.js";
-import { PostEntity } from "../db/entities/post.entity.js";
+import { UserEntity } from "@entity/user.entity.js";
+import { PostEntity } from "@entity/post.entity.js";
 import { UserRepository } from "./user.repository.js";
 import { PostRepository } from "./post.repository.js";
 import { postMapper, userMapper } from "../mappers/index.js";

@@ -15,6 +15,15 @@ export class UserRepository {
     return this.userDao.findOneByOrFail({ id }).then(this.userMapper.toDto);
   }
 
+  getWithPosts(id: string): Promise<UserDto> {
+    return this.userDao
+      .findOneOrFail({
+        where: { id },
+        relations: { posts: true },
+      })
+      .then(this.userMapper.toDto);
+  }
+
   getByUsername(username: string): Promise<UserDto> {
     return this.userDao
       .findOneByOrFail({ username })
@@ -23,6 +32,14 @@ export class UserRepository {
 
   getAll(): Promise<UserDto[]> {
     return this.userDao.find().then(users => this.userMapper.toDtoArr(users));
+  }
+
+  getAllWithPosts(): Promise<UserDto[]> {
+    return this.userDao
+      .find({
+        relations: { posts: true },
+      })
+      .then(users => this.userMapper.toDtoArr(users));
   }
 
   async create(createUserDto: CreateUserDto): Promise<UserDto> {
