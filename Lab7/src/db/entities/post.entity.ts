@@ -1,29 +1,27 @@
-import {Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Relation} from "typeorm";
-import {UserEntity} from "./user.entity.js";
-// id: uuid or number
-// dateCreation: Date required
-// title: string required
-// text: string required
-// userId: uuid or number
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  Relation,
+} from "typeorm";
+import { UserEntity } from "./user.entity.js";
 
-@Entity({name: "posts"})
+@Entity({ name: "posts" })
 export class PostEntity {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-    @Column()
-    title: string;
+  @Column()
+  title: string;
 
-    @Column()
-    text: string;
+  @Column()
+  text: string;
 
-    @ManyToOne(
-        () => UserEntity,
-        user => user.posts,
-        {nullable: false}
-    )
-    user: Relation<UserEntity>;
+  @ManyToOne(() => UserEntity, user => user.posts, { nullable: false })
+  user: Relation<UserEntity>;
 
-    @CreateDateColumn({name: 'created_at'})
-    dateCreation: Date;
+  @CreateDateColumn({ name: "created_at" })
+  dateCreation: Date;
 }
