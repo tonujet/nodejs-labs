@@ -60,15 +60,14 @@ export class UserRepository {
     city,
     userPostTitle,
   }: GetAllWhereOptionsParamType): FindOptionsWhere<UserEntity>[] {
-    const searchOption = search ? ILike(`%${search}%`) : undefined;
+    const searchOption = search && ILike(`%${search}%`);
     const mainWhereOptions = {
       posts: {
-        title: userPostTitle ? ILike(`${userPostTitle}`) : undefined,
+        title: userPostTitle && ILike(`${userPostTitle}`)
       },
-      age: age ? Equal(age) : undefined,
+      age: age && Equal(age),
       address: city
-        ? Raw(() => `address::json ->> 'city' ILIKE :city`, { city })
-        : undefined,
+        ? Raw(() => `address::json ->> 'city' ILIKE :city`, { city }) : undefined ,
       id: Not(IsNull()),
     };
     return [
