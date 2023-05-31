@@ -9,7 +9,6 @@ export const apiValidationMiddleware = <T extends Error>(
   res: Response,
   next: NextFunction
 ) => {
-  console.log(err);
   const { status, message, ...props } = handleException(err);
   res.status(status).json({
     status: StatusCodes[status],
