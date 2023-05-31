@@ -106,6 +106,6 @@ dist
 #Web storm config
 .idea/
 
-**/build
+**/build/
 
-**/database
+**/database/
