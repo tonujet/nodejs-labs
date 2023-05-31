@@ -1,5 +1,5 @@
-import { Exclude, Expose, Type } from "class-transformer";
-import { UserDto } from "@dto/user/user-dto.js";
+import { Expose, Type } from "class-transformer";
+import { UserDto } from "@dto/user/user.dto.js";
 
 export class PostDto {
   @Expose()

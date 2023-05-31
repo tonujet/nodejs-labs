@@ -8,7 +8,7 @@ import {
   Max,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { UserAddressDto } from "./user-address-dto.js";
+import { UserAddressDto } from "./user-address.dto.js";
 
 export class CreateUserDto {
   @IsString()

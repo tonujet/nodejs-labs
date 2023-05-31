@@ -1,9 +1,9 @@
 import { PostEntity } from "@entity/post.entity.js";
-import { PostDto } from "@dto/post/post-dto.js";
+import { PostDto } from "@dto/post/post.dto.js";
 import { plainToInstance } from "class-transformer";
-import { CreatePostDto } from "@dto/post/create-post-dto.js";
+import { CreatePostDto } from "@dto/post/create-post.dto.js";
 import { UserEntity } from "@entity/user.entity.js";
-import { UserDto } from "@dto/user/user-dto.js";
+import { UserDto } from "@dto/user/user.dto.js";
 
 export class PostMapper {
   toDto(post: PostEntity): PostDto {

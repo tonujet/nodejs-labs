@@ -16,4 +16,4 @@ export const apiValidationMiddleware = <T extends Error>(
     message: message,
     ...props,
   });
-}
+};

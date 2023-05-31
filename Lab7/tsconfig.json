@@ -23,13 +23,15 @@
       "@enum/*": ["common/enums/*"],
       "@type/*": ["common/types/*"],
       "@exception/*": ["common/exceptions/*"],
+      "@interface/*": ["common/interfaces/*"],
       "@controller/*": ["controllers/*"],
       "@dto/*": ["dtos/*"],
       "@entity/*": ["db/entities/*"],
       "@repository/*": ["repositories/*"],
       "@router/*": ["routers/*"],
       "@service/*": ["services/*"],
-      "@validation/*": ["validation/*"]
+      "@validation/*": ["utils/validation/*"],
+      "@mapper/*": ["utils/mappers/*"]
     }
   }
 }

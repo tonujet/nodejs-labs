@@ -1,5 +1,5 @@
 import { UserEntity } from "@entity/user.entity.js";
-import { UserDto } from "@dto/user/user-dto.js";
+import { UserDto } from "@dto/user/user.dto.js";
 import { plainToInstance } from "class-transformer";
 
 export class UserMapper {

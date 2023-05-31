@@ -1,5 +1,5 @@
 import { PostRepository } from "@repository/post.repository.js";
-import { CreatePostDto } from "@dto/post/create-post-dto.js";
+import { CreatePostDto } from "@dto/post/create-post.dto.js";
 
 export class PostService {
   constructor(private readonly postRepo: PostRepository) {}

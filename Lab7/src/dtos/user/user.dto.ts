@@ -1,6 +1,6 @@
 import { Expose, Type } from "class-transformer";
-import { UserAddressDto } from "@dto/user/user-address-dto.js";
-import { PostDto } from "@dto/post/post-dto.js";
+import { UserAddressDto } from "@dto/user/user-address.dto.js";
+import { PostDto } from "@dto/post/post.dto.js";
 
 export class UserDto {
   @Expose()

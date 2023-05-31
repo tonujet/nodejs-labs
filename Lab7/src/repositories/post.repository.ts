@@ -1,9 +1,10 @@
 import { Repository } from "typeorm";
 import { PostEntity } from "@entity/post.entity.js";
-import { CreatePostDto } from "@dto/post/create-post-dto.js";
+import { CreatePostDto } from "@dto/post/create-post.dto.js";
 import { UserRepository } from "@repository/user.repository.js";
-import { PostDto } from "@dto/post/post-dto.js";
-import { PostMapper } from "../mappers/post-mapper.js";
+import { PostDto } from "@dto/post/post.dto.js";
+import { PostMapper } from "@mapper/post.mapper.js";
+import { EntityNotFoundException } from "@exception/entity/entity-not-found.exception.js";
 
 export class PostRepository {
   constructor(
@@ -18,7 +19,10 @@ export class PostRepository {
         where: { id },
         relations: ["user"],
       })
-      .then(this.postMapper.toDto);
+      .then(this.postMapper.toDto)
+      .catch(() => {
+        throw new EntityNotFoundException("post", "id", id);
+      });
   }
 
   getAll(): Promise<PostDto[]> {
