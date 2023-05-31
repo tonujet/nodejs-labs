@@ -19,7 +19,10 @@ export class PostEntity {
   @Column()
   text: string;
 
-  @ManyToOne(() => UserEntity, user => user.posts, { nullable: false })
+  @ManyToOne(() => UserEntity, user => user.posts, {
+    nullable: false,
+    onDelete: "CASCADE",
+  })
   user: Relation<UserEntity>;
 
   @CreateDateColumn({ name: "created_at" })
