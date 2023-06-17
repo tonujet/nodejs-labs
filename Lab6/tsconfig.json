@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "types": ["node"],
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": "src",
+    "paths": {
+      "@common/*": ["common/*"],
+      "@enum/*": ["common/enum/*"],
+      "@type/*": ["common/type/*"],
+      "@controller/*": ["controller/*"],
+      "@dto/*": ["dto/*"],
+      "@repository/*": ["repository/*"],
+      "@view/*": ["view/*"]
+    }
+  }
+}

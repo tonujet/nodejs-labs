@@ -1,0 +1,49 @@
+{
+  "name": "lab6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "build:watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "start": "node build/index.js",
+    "dev": "nodemon -q build/index.js",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --check \"**/*.+(ts|json)\"",
+    "format:fix": "prettier --write \"**/*.+(ts|json)\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "dotenv": "^16.0.3",
+    "eslint-config-prettier": "^8.8.0",
+    "pg": "^8.11.0",
+    "terminal-image": "^2.0.0",
+    "tsc-alias": "^1.8.6",
+    "undici": "^5.22.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.7",
+    "@types/pg": "^8.6.6",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run build && npm start",
+    "ext": "ts"
+  }
+}
